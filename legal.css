@@ -1,0 +1,131 @@
+@font-face {
+  font-family: "Archivo";
+  src: url("assets/Archivo-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("assets/DMSans-VF.woff2") format("woff2");
+  font-weight: 100 1000;
+  font-display: swap;
+}
+:root {
+  --fondo: #0e0d0f;
+  --crema: #f5eee5;
+  --crema-2: #cfc6bb;
+  --tenue: #8d857c;
+  --linea: rgba(245, 238, 229, 0.12);
+  --rojo: #e03127;
+  --rojo-texto: #ff9a8f;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--fondo);
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--crema-2);
+  font:
+    400 16px/1.7 "DM Sans",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: var(--rojo);
+  color: var(--crema);
+}
+header,
+main,
+footer {
+  width: min(760px, 100% - 32px);
+  margin: 0 auto;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+}
+.marca {
+  color: var(--crema);
+  text-decoration: none;
+  font:
+    700 22px/1 "Archivo",
+    sans-serif;
+  letter-spacing: -0.03em;
+}
+.marca span {
+  color: var(--rojo);
+}
+.marca small {
+  font:
+    500 13px "DM Sans",
+    sans-serif;
+  color: var(--crema-2);
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+.volver {
+  color: var(--crema-2);
+  font-size: 14px;
+}
+h1 {
+  margin: 56px 0 8px;
+  color: var(--crema);
+  font:
+    650 clamp(36px, 7vw, 56px) / 1.02 "Archivo",
+    sans-serif;
+  letter-spacing: -0.035em;
+}
+.fecha {
+  margin: 0 0 32px;
+  font-size: 14px;
+  color: var(--tenue);
+}
+h2 {
+  margin: 40px 0 10px;
+  padding-top: 24px;
+  border-top: 1px solid var(--linea);
+  color: var(--crema);
+  font:
+    600 21px/1.25 "Archivo",
+    sans-serif;
+  letter-spacing: -0.015em;
+}
+p,
+li {
+  max-width: 68ch;
+}
+ul {
+  padding-left: 1.2em;
+}
+li {
+  margin: 4px 0;
+}
+strong {
+  color: var(--crema);
+  font-weight: 600;
+}
+a {
+  color: var(--rojo-texto);
+  text-underline-offset: 0.2em;
+}
+.pendiente {
+  color: var(--rojo-texto);
+}
+footer {
+  padding: 48px 0 56px;
+  font-size: 14px;
+  color: var(--tenue);
+}
+:focus-visible {
+  outline: 2px solid #ff4a36;
+  outline-offset: 3px;
+}
