@@ -1738,64 +1738,64 @@ html:not(.js) .pd-num {
 }
 
 /* Animación al entrar: estado final visible por defecto; solo se anima con JS y sin movimiento reducido */
-.js .realidad:not(.en-vista) .pd-escribe {
+.js .escena:not(.en-vista) .pd-escribe {
   width: 0;
 }
-.js .realidad:not(.en-vista) .pd-ok,
-.js .realidad:not(.en-vista) .pd-lista li,
-.js .realidad:not(.en-vista) .pw-sitio > *,
-.js .realidad:not(.en-vista) .pv-aviso {
+.js .escena:not(.en-vista) .pd-ok,
+.js .escena:not(.en-vista) .pd-lista li,
+.js .escena:not(.en-vista) .pw-sitio > *,
+.js .escena:not(.en-vista) .pv-aviso {
   opacity: 0;
   transform: translateY(10px);
 }
-.js .realidad:not(.en-vista) .pv-barras span {
+.js .escena:not(.en-vista) .pv-barras span {
   transform: scaleY(0);
 }
-.js .realidad .pd-escribe {
+.js .escena .pd-escribe {
   transition: width 1.1s steps(12, end) 0.2s;
 }
-.js .realidad .pd-ok,
-.js .realidad .pd-lista li,
-.js .realidad .pw-sitio > *,
-.js .realidad .pv-aviso {
+.js .escena .pd-ok,
+.js .escena .pd-lista li,
+.js .escena .pw-sitio > *,
+.js .escena .pv-aviso {
   transition:
     opacity 0.6s var(--salida),
     transform 0.6s var(--salida);
 }
-.js .realidad .pd-ok {
+.js .escena .pd-ok {
   transition-delay: 1.4s;
 }
-.js .realidad .pd-lista li:nth-child(1) {
+.js .escena .pd-lista li:nth-child(1) {
   transition-delay: 1.7s;
 }
-.js .realidad .pd-lista li:nth-child(2) {
+.js .escena .pd-lista li:nth-child(2) {
   transition-delay: 1.85s;
 }
-.js .realidad .pd-lista li:nth-child(3) {
+.js .escena .pd-lista li:nth-child(3) {
   transition-delay: 2s;
 }
-.js .realidad .pw-sitio > :nth-child(1) {
+.js .escena .pw-sitio > :nth-child(1) {
   transition-delay: 0.5s;
 }
-.js .realidad .pw-sitio > :nth-child(2) {
+.js .escena .pw-sitio > :nth-child(2) {
   transition-delay: 0.7s;
 }
-.js .realidad .pw-sitio > :nth-child(3) {
+.js .escena .pw-sitio > :nth-child(3) {
   transition-delay: 0.95s;
 }
-.js .realidad .pv-aviso:nth-child(1) {
+.js .escena .pv-aviso:nth-child(1) {
   transition-delay: 1s;
 }
-.js .realidad .pv-aviso:nth-child(2) {
+.js .escena .pv-aviso:nth-child(2) {
   transition-delay: 1.5s;
 }
-.js .realidad .pv-aviso:nth-child(3) {
+.js .escena .pv-aviso:nth-child(3) {
   transition-delay: 2s;
 }
-.js .realidad .pv-barras span {
+.js .escena .pv-barras span {
   transition: transform 0.9s var(--salida);
 }
-.js .realidad .pv-barras span:nth-child(n) {
+.js .escena .pv-barras span:nth-child(n) {
   transition-delay: calc(0.9s + var(--v) * 0.9s);
 }
 @media (max-width: 960px) {
@@ -2155,6 +2155,52 @@ html:not(.js) .pd-num {
     line-height: 1.15;
     padding: 8px 10px;
     min-height: 46px;
+    font-size: 13px;
+  }
+}
+
+/* Celular: portada más compacta para que la red "Idea → Ventas" tenga espacio arriba del titular */
+@media (max-width: 720px) {
+  .solo-amplio {
+    display: none;
+  }
+  .hero {
+    padding-bottom: 76px;
+  }
+  .hero-texto {
+    margin-top: 16px;
+  }
+  .hero-acciones {
+    flex-wrap: nowrap;
+    margin-top: 20px;
+  }
+  .hero-acciones .pildora {
+    flex: 1 1 0;
+    min-height: 50px;
+    padding: 0 12px;
+  }
+  .hero-dato {
+    margin-top: 14px;
+    font-size: 12px;
+  }
+  .g-mecha {
+    font-size: 11px;
+  }
+  .g-extra {
+    flex: 1.6;
+  }
+}
+@media (max-width: 380px) {
+  .marca-by {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .nav {
+    padding-left: 14px;
+    gap: 10px;
+  }
+  .nav .pildora-chica {
+    padding: 0 14px;
     font-size: 13px;
   }
 }

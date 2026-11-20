@@ -55,9 +55,9 @@
     if (angosto) {
       // En celular la historia vive en la franja libre entre el menú y el titular; si no cabe, solo queda la red.
       const titulo = document.querySelector(".hero-titulo").getBoundingClientRect();
-      const arriba = 84;
+      const arriba = 92;
       const abajo = titulo.top - r.top - 18;
-      historiaVisible = abajo - arriba >= 130;
+      historiaVisible = abajo - arriba >= 110;
       const ys = ANGOSTO.map((p) => p[1]);
       const min = Math.min(...ys),
         max = Math.max(...ys);

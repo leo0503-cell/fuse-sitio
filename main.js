@@ -111,18 +111,21 @@
   // Escenas de "idea a realidad": se arman cuando entran en pantalla.
   const realidad = document.querySelector("[data-realidad]");
   if (realidad) {
-    if (reducir || !("IntersectionObserver" in window)) realidad.classList.add("en-vista");
+    const escenas = realidad.querySelectorAll(".escena");
+    if (reducir || !("IntersectionObserver" in window)) escenas.forEach((e) => e.classList.add("en-vista"));
     else {
+      // Cada pantalla se arma cuando ella misma entra a la vista (en celular van apiladas).
       const io2 = new IntersectionObserver(
-        ([en]) => {
-          if (en.isIntersecting) {
-            realidad.classList.add("en-vista");
-            io2.disconnect();
-          }
-        },
-        { threshold: 0.3 },
+        (entradas) =>
+          entradas.forEach((en) => {
+            if (en.isIntersecting) {
+              en.target.classList.add("en-vista");
+              io2.unobserve(en.target);
+            }
+          }),
+        { threshold: 0.35 },
       );
-      io2.observe(realidad.querySelector(".escenas"));
+      escenas.forEach((e) => io2.observe(e));
     }
   }
 
