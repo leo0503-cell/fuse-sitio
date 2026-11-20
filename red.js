@@ -43,20 +43,30 @@
   const PASO = 1300; // ms entre un nodo y el siguiente
   const CICLO = PASO * NODOS.length + 3200;
 
+  let anchoPrevio = 0;
   function medir() {
     const r = canvas.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = r.width;
-    h = r.height;
-    canvas.width = Math.round(w * dpr);
-    canvas.height = Math.round(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const nuevoDpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cambioAncho = Math.abs(r.width - anchoPrevio) > 1;
+    // Solo se reinicia el lienzo si de verdad cambió de tamaño (en celular la barra del navegador dispara resize).
+    if (cambioAncho || Math.abs(r.height - h) > 1 || nuevoDpr !== dpr) {
+      dpr = nuevoDpr;
+      w = r.width;
+      h = r.height;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
     const angosto = w < 760;
     if (angosto) {
       // En celular la historia vive en la franja libre entre el menú y el titular; si no cabe, solo queda la red.
-      const titulo = document.querySelector(".hero-titulo").getBoundingClientRect();
+      // offsetTop no cambia con la animación de entrada del titular (getBoundingClientRect sí), así los nodos no brincan.
+      const titulo = document.querySelector(".hero-titulo");
+      let top = 0;
+      const heroEl = canvas.closest(".hero");
+      for (let el = titulo; el && el !== heroEl; el = el.offsetParent) top += el.offsetTop;
       const arriba = 92;
-      const abajo = titulo.top - r.top - 18;
+      const abajo = top - 18;
       historiaVisible = abajo - arriba >= 110;
       const ys = ANGOSTO.map((p) => p[1]);
       const min = Math.min(...ys),
@@ -70,15 +80,19 @@
       historiaVisible = true;
       nodos = NODOS.map((nombre, i) => ({ nombre, x: ANCHO[i][0] * w, y: ANCHO[i][1] * h }));
     }
-    const n = Math.round(Math.min(110, (w * h) / (angosto ? 9000 : 14000)));
-    puntos = Array.from({ length: n }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.12,
-      vy: (Math.random() - 0.5) * 0.12,
-      r: Math.random() * 1.2 + 0.4,
-      brillo: Math.random(),
-    }));
+    // Los puntos de fondo solo se crean de nuevo si cambia el ancho (girar el teléfono o cambiar la ventana).
+    if (cambioAncho || !puntos.length) {
+      anchoPrevio = r.width;
+      const n = Math.round(Math.min(110, (w * h) / (angosto ? 9000 : 14000)));
+      puntos = Array.from({ length: n }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.12,
+        vy: (Math.random() - 0.5) * 0.12,
+        r: Math.random() * 1.2 + 0.4,
+        brillo: Math.random(),
+      }));
+    }
   }
 
   function fondo(dt) {
@@ -214,7 +228,7 @@
   }
 
   medir();
-  if (document.fonts) document.fonts.ready.then(() => setTimeout(medir, 1100));
+  if (document.fonts) document.fonts.ready.then(medir);
   if (reducir) {
     estatico();
     window.addEventListener("resize", () => {

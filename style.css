@@ -350,8 +350,17 @@ ol {
 @keyframes subir {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(10px);
     filter: blur(6px);
+  }
+}
+@media (max-width: 720px) {
+  /* En celular la entrada es solo fundido: sin desplazamiento que se sienta como empujón */
+  @keyframes subir {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+    }
   }
 }
 
