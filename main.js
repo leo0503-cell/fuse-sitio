@@ -11,6 +11,16 @@
     flotante.rel = "noopener";
   }
 
+  // Alto fijo de la portada en celular: solo se recalcula si cambia el ancho (girar el teléfono).
+  let anchoPortada = window.innerWidth;
+  window.addEventListener("resize", () => {
+    if (Math.abs(window.innerWidth - anchoPortada) < 2) return;
+    anchoPortada = window.innerWidth;
+    if (window.matchMedia("(max-width: 960px)").matches)
+      document.documentElement.style.setProperty("--alto-hero", window.innerHeight + "px");
+    else document.documentElement.style.removeProperty("--alto-hero");
+  });
+
   // Nav con más fondo al bajar.
   const nav = document.querySelector("[data-nav]");
   const marcarNav = () => nav.classList.toggle("con-fondo", window.scrollY > 40);

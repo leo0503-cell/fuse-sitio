@@ -270,7 +270,7 @@ ol {
 /* Portada */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: var(--alto-hero, 100svh);
   display: grid;
   place-items: center;
   padding: 140px var(--margen) 140px;
@@ -2211,5 +2211,13 @@ html:not(.js) .pd-num {
   .nav .pildora-chica {
     padding: 0 14px;
     font-size: 13px;
+  }
+}
+
+/* Celular: los bloques aparecen con fundido, sin deslizarse (se sentía como empujón al hacer scroll) */
+@media (max-width: 720px) {
+  .js .revelar {
+    transform: none;
+    transition: opacity 0.7s ease;
   }
 }

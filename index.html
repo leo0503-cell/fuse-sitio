@@ -34,6 +34,10 @@
     <link rel="stylesheet" href="style.css" />
     <script>
       document.documentElement.classList.add("js");
+      // En celular la portada toma el alto de la pantalla una sola vez: así no crece ni se encoge cuando la barra
+      // del navegador aparece o se esconde al hacer scroll (eso empujaba todo lo de abajo).
+      if (window.matchMedia("(max-width: 960px)").matches)
+        document.documentElement.style.setProperty("--alto-hero", window.innerHeight + "px");
     </script>
     <script type="application/ld+json">
       {
