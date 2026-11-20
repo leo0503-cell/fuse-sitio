@@ -65,7 +65,7 @@
       let top = 0;
       const heroEl = canvas.closest(".hero");
       for (let el = titulo; el && el !== heroEl; el = el.offsetParent) top += el.offsetTop;
-      const arriba = 92;
+      const arriba = 104;
       const abajo = top - 18;
       historiaVisible = abajo - arriba >= 110;
       const ys = ANGOSTO.map((p) => p[1]);

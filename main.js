@@ -11,6 +11,8 @@
     flotante.rel = "noopener";
   }
 
+  if (!location.hash) window.scrollTo(0, 0);
+
   // Alto fijo de la portada en celular: solo se recalcula si cambia el ancho (girar el teléfono).
   let anchoPortada = window.innerWidth;
   window.addEventListener("resize", () => {

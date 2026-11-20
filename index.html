@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="style.css" />
     <script>
       document.documentElement.classList.add("js");
+      // Al recargar, empezar arriba (el navegador restauraba el scroll y la parte alta de la red quedaba bajo el menú).
+      if ("scrollRestoration" in history && !location.hash) history.scrollRestoration = "manual";
       // En celular la portada toma el alto de la pantalla una sola vez: así no crece ni se encoge cuando la barra
       // del navegador aparece o se esconde al hacer scroll (eso empujaba todo lo de abajo).
       if (window.matchMedia("(max-width: 960px)").matches)
