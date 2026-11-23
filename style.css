@@ -2221,3 +2221,12 @@ html:not(.js) .pd-num {
     transition: opacity 0.7s ease;
   }
 }
+
+.guias-liga {
+  margin-top: 24px;
+  font-size: 15px;
+  color: var(--tenue);
+}
+.guias-liga a {
+  color: var(--crema-2);
+}
